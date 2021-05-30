@@ -1,4 +1,6 @@
 # hpc_lecture
+Name : Mastiyage Don Sudeera Hasaranga Gunathilaka
+Student ID: 20M31349
 
 |          | Topic                                | Sample code               |
 | -------- | ------------------------------------ | ------------------------- |
