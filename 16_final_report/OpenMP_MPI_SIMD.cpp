@@ -20,6 +20,7 @@ int main(int argc, char** argv) {
   vector<float> subA(N*N/size);
   vector<float> subB(N*N/size);
   vector<float> subC(N*N/size, 0);
+  vector<float> recv(N*N/size);
  
  
 #pragma omp parallel for 
@@ -68,6 +69,9 @@ int main(int argc, char** argv) {
     MPI_Isend(&subB[0], N*N/size, MPI_FLOAT, send_to, 0, MPI_COMM_WORLD, &request[0]);
     MPI_Irecv(&subB[0], N*N/size, MPI_FLOAT, recv_from, 0, MPI_COMM_WORLD, &request[1]);
     MPI_Waitall(2, request, MPI_STATUS_IGNORE);
+
+    for (int i=0; i<N*N/size; i++)
+      subB[i] = recv[i];
 
     tic = chrono::steady_clock::now();
     comm_time += chrono::duration<double>(tic - toc).count();
