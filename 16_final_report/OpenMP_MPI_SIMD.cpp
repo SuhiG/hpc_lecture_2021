@@ -22,7 +22,6 @@ int main(int argc, char** argv) {
   vector<float> subC(N*N/size, 0);
   vector<float> recv(N*N/size);
  
- 
 #pragma omp parallel for 
   for (int i=0; i<N; i++) {
 #pragma omp task 
